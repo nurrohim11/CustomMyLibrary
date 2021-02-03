@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,10 +18,12 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 
 
 import java.util.Objects;
@@ -36,6 +39,7 @@ public class SweetDialog extends AlertDialog implements View.OnClickListener {
     private TextView mTitleTextView, mContentTextView;
     private LinearLayout llCloseDialog;
     private ImageView mErrorX, mSuccessTick, mCustomImage, mShowCloseDialog;
+    private LinearLayout llParent;
 
     private Drawable mCustomImgDrawable;
     private Button mConfirmButton, mCancelButton;
@@ -68,12 +72,6 @@ public class SweetDialog extends AlertDialog implements View.OnClickListener {
     public static final int CUSTOM_IMAGE_TYPE = 4;
     public static final int PROGRESS_TYPE = 5;
 
-    public static final int BLUE_TYPE = 1;
-    public static final int RED_TYPE = 2;
-    public static final int YELLOW_TYPE = 3;
-    public static final int GOLD_TYPE = 4;
-    public static final int GREEN_TYPE = 5;
-
     public static boolean DARK_STYLE = false;
 
     public interface SweetClickListener {
@@ -92,6 +90,7 @@ public class SweetDialog extends AlertDialog implements View.OnClickListener {
         setContentView(R.layout.alert_dialog);
 
         mDialogView = Objects.requireNonNull(getWindow()).getDecorView().findViewById(android.R.id.content);
+        llParent = findViewById(R.id.ll_parent);
         mTitleTextView = findViewById(R.id.title_text);
         mContentTextView = findViewById(R.id.content_text);
         mShowCloseDialog = findViewById(R.id.iv_close);
@@ -123,7 +122,7 @@ public class SweetDialog extends AlertDialog implements View.OnClickListener {
         setConfirmText(mConfirmText);
         setConfirmBackground(mColor);
         setCancelBackground(mCancelColor);
-//        setConfirmBackground(GOLD_TYPE);
+//        rlParent.setBackgroundColor(Color.TRANSPARENT);
     }
 
     public SweetDialog(Context context, int alertType) {
@@ -228,6 +227,7 @@ public class SweetDialog extends AlertDialog implements View.OnClickListener {
                     mProgressFrame.setVisibility(View.VISIBLE);
                     mConfirmButton.setVisibility(View.GONE);
                     setConfirmBackground(mColor);
+                    llParent.setBackgroundColor(Color.TRANSPARENT);
                     break;
                 case INPUT_TYPE:
                     mEditText.requestFocus();
@@ -255,30 +255,6 @@ public class SweetDialog extends AlertDialog implements View.OnClickListener {
         }
         return this;
     }
-
-//    public SweetDialog setConfirmBackground(int flag){
-//        switch (flag){
-//            case RED_TYPE:
-//                mConfirmButton.setBackgroundResource(R.drawable.button_red_background);
-//                break;
-//            case GOLD_TYPE:
-//                mConfirmButton.setBackgroundResource(R.drawable.button_gold_background);
-//                break;
-//            case BLUE_TYPE:
-//                mConfirmButton.setBackgroundResource(R.drawable.button_blue_background);
-//                break;
-//            case GREEN_TYPE:
-//                mConfirmButton.setBackgroundResource(R.drawable.button_green_background);
-//                break;
-//            case YELLOW_TYPE:
-//                mConfirmButton.setBackgroundResource(R.drawable.button_yellow_background);
-//                break;
-//            default:
-//                mConfirmButton.setBackgroundResource(R.drawable.button_gold_background);
-//                break;
-//        }
-//        return this;
-//    }
 
     private void showTitleText() {
         mShowTitleText = true;
@@ -506,15 +482,6 @@ public class SweetDialog extends AlertDialog implements View.OnClickListener {
         }
         return this;
     }
-
-//    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-//    public SweetDialog confirmButtonColor (int color){
-//        return setConfirmBackground(getContext().getResources().getDrawable(color));
-//    }
-//
-//    public SweetDialog cancelButtonColor (int color){
-//        return setCancelButtonColor(getContext().getResources().getDrawable(color));
-//    }
 
     public SweetDialog setContentTextSize (int value){
         this.contentTextSize = value;

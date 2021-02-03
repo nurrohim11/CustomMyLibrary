@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.rohimdev.sweetdialog.SweetDialog;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

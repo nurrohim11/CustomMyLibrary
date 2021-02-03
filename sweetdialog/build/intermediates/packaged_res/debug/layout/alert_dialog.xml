@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:wheel="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/loading"
+    android:id="@+id/ll_parent"
     android:layout_width="@dimen/_230sdp"
     android:layout_height="wrap_content"
     android:gravity="center"
