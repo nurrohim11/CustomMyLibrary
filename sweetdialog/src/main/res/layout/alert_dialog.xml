@@ -185,15 +185,16 @@
 
             <Button
                 android:id="@+id/cancel_button"
-                style="@style/dialog_blue_button"
+                style="@style/dialog_green_button"
                 android:background="@drawable/gray_button_background"
                 android:text="@string/dialog_cancel"
                 android:visibility="gone"
-                android:layout_marginRight="@dimen/_8sdp" />
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp" />
 
             <Button
                 android:id="@+id/custom_confirm_button"
-                style="@style/dialog_blue_button"
+                style="@style/dialog_green_button"
                 android:visibility="gone"
                 android:text="@string/dialog_ok" />
         </LinearLayout>
